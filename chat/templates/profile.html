@@ -1,0 +1,26 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block title %}Profile{% endblock %}
+
+{% block content %}
+    <div class="container text-center">
+        
+
+            <div class="media">
+                <img class="rounded-circle" src="{{user.profile.image.url}}">
+
+                <div class="media-body">
+                    <h2 class="account-heading"> Hello {{user.username}}</h2>
+                </div>
+            </div>
+
+        <form method="post" action="." enctype="multipart/form-data">
+            {% csrf_token %}
+            
+            {{u_form}}
+            {{p_form}}
+        
+            <button type="submit" class=" mb-2 mt-2 btn btn-outline-info">Update</button>
+        </form>
+    </div>
+{% endblock %}

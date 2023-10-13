@@ -1,0 +1,41 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block title %}Inbox{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1 class="mb-3 mt-3">Inbox</h1>
+
+        {% for chat in chats %}
+          
+        <a href="{% url 'detailchat' chat.id %}">
+        <div>
+            {% for member in chat.members.all %}
+            {% if member != request.user %}
+                <p class="mb-2"><strong>{{member.username}}</strong> | {{chat.created_at}}</p>
+                <p>{{chat.item.name}}</p>
+            {% endif %}
+        {% endfor %}
+             </a>
+    </div>
+    {% endfor %}
+
+        </div>
+            
+ {% endblock %}
+        <!-- {% for chat in chats %}
+            <a href="{% url 'detailchat' chat.id %}">
+                <div class="text-secondary">
+                    <div>
+                        {% for member in chat.members.all %}
+                            {% if member != request.user %}
+                                <p class="mb-3"><strong>{{member.username}}</strong> | {{chat.created_at}}</p>
+                                <p>{{chat.item.name}}</p>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </a>
+        {% endfor %}
+    </div> -->
+
